@@ -1,0 +1,128 @@
+SQL Server Objects: Differences Report
+
+
+1. Trigger vs. Stored Procedure
+
+- **Trigger**: 
+  - Automatically executed in response to specific events on a table (INSERT, UPDATE, DELETE).
+  - Cannot be called explicitly; runs when the triggering event occurs.
+  - Used primarily for data integrity and enforcing business rules.
+
+- **Stored Procedure**: 
+  - A set of SQL statements that can be executed on demand.
+  - Can accept parameters and return values.
+  - Used for encapsulating repetitive tasks and complex operations.
+
+
+2. Stored Procedure vs. Function
+
+- **Stored Procedure**: 
+  - Can perform actions like modifying database state (INSERT, UPDATE).
+  - Does not return a value directly but can return multiple result sets.
+  - Invoked with the `EXECUTE` or `CALL` statement.
+
+- **Function**: 
+  - Must return a single value (scalar function) or a table (table-valued function).
+  - Cannot perform operations that change database state (e.g., DML operations).
+  - Can be used in SELECT statements.
+
+3. DROP vs. DELETE Statement
+
+- **DROP**: 
+  - Removes an entire database object (table, view, procedure).
+  - Cannot be rolled back if not part of a transaction.
+  - All data and structure are lost.
+
+- **DELETE**: 
+  - Removes rows from a table based on a condition.
+  - Can be rolled back if part of a transaction.
+  - Retains the structure of the table.
+
+
+
+
+4. SELECT vs. SELECT INTO Statement
+
+- **SELECT**: 
+  - Retrieves data from one or more tables.
+  - Can be used to return results to the client or another statement.
+
+- **SELECT INTO**: 
+  - Creates a new table and populates it with the result set of the query.
+  - The new table inherits the structure of the selected columns.
+
+
+
+5. DDL, DML, DCL, and DQL
+
+- **DDL (Data Definition Language)**: 
+  - Commands like `CREATE`, `ALTER`, `DROP` that define or modify database structures.
+  
+- **DML (Data Manipulation Language)**: 
+  - Commands like `INSERT`, `UPDATE`, `DELETE` that manipulate data within existing structures.
+
+- **DCL (Data Control Language)**: 
+  - Commands like `GRANT`, `REVOKE` that control access to data.
+
+- **DQL (Data Query Language)**: 
+  - Primarily consists of the `SELECT` statement to query data.
+
+
+
+6. Table-Valued Function vs. Multi-Statement Function
+
+- **Table-Valued Function**: 
+  - Returns a table as a result.
+  - Can be used in a FROM clause of a query.
+
+- **Multi-Statement Function**: 
+  - Allows multiple SQL statements to be executed and can return a table.
+  - Typically used for complex logic and manipulation before returning the result.
+
+
+
+
+
+
+ 7. VARCHAR(50) vs. VARCHAR(MAX)
+
+- **VARCHAR(50)**: 
+  - Fixed maximum length of 50 characters.
+  - More efficient in terms of storage for short strings.
+
+- **VARCHAR(MAX)**: 
+  - Can store up to 2^31-1 bytes of data.
+  - Used for longer text strings but may incur performance overhead.
+
+
+8. SQL Authentication vs. Windows Authentication
+
+- **SQL Authentication**: 
+  - Users provide a username and password stored in SQL Server.
+  - Can be used for users outside of Windows domains.
+
+- **Windows Authentication**: 
+  - Uses Windows user accounts for authentication.
+  - More secure and integrates with Active Directory.
+
+
+9. Inline Function vs. View
+
+- **Inline Function**: 
+  - A function that returns a single table result and can take parameters.
+  - Can be used in SQL statements as if it were a table.
+
+- **View**: 
+  - A virtual table based on the result of a SELECT query.
+  - Does not take parameters and cannot perform operations.
+
+
+10. Identity vs. Unique Constraint
+
+- **Identity**: 
+  - Automatically generates unique values for a column, typically used for primary keys.
+  - Ensures sequential values for new records.
+
+- **Unique Constraint**: 
+  - Ensures that all values in a column are different, allowing for non-sequential unique values.
+  - Can be applied to one or more columns.
